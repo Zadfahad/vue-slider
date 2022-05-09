@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slider JS</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   </head>
   <body>
-    <div class="container">
-      <div class="items">
-        <!--
-            <div class="item active">
-                <img src="./img/01.jpg" alt="">
-                <div class="text">
-                    <h3>Lorem</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.</p>
+    <div id="root">
+        <div class="container">
+            <div class="items">
+                <div  v-for="(item,index) in cities" :class="index   === currentSlide ? 'active' : ''">
+                    <img :src="item.image" alt="">
+                    <div class="text">
+                        <h3>{{item.name}}</h3>
+                        <p>{{item.text}}</p>
+                    </div>
                 </div>
             </div>
-            -->
-      </div>
       <div class="thumbs">
         <!--
             <div class="thumb active">

@@ -1,124 +1,37 @@
-const images = [
-    'img/01.jpg',
-    'img/02.jpg',
-    'img/03.jpg',
-    'img/04.jpg',
-    'img/05.jpg'
-];
+const app = new Vue(
+    {
+        el: '#root',
+        data: {
+            cities: [
+                {
+                    name: 'Svezia',
+                    image:  './img/01.jpg',
+                    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis, veritatis minus rerum expedita voluptatum id. Quas tenetur, a laborum facere aliquid rem quia, porro, sapiente aliquam voluptatum qui voluptatem!'
+                },
+                {
+                    name: 'Svizzera', 
+                    image: './img/02.jpg',
+                    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis, veritatis minus rerum expedita voluptatum id. Quas tenetur, a laborum facere aliquid rem quia, porro, sapiente aliquam voluptatum qui voluptatem!'
+                },
+                {
+                    name: 'Gran Bretagna', 
+                    image: './img/03.jpg',
+                    text:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis, veritatis minus rerum expedita voluptatum id. Quas tenetur, a laborum facere aliquid rem quia, porro, sapiente aliquam voluptatum qui voluptatem!'
+                },
+                {
+                    name: 'Germania', 
+                    image: './img/04.jpg',
+                    text:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis, veritatis minus rerum expedita voluptatum id. Quas tenetur, a laborum facere aliquid rem quia, porro, sapiente aliquam voluptatum qui voluptatem!'
+                },
+                {
+                    name: 'Paradise', 
+                    image: './img/05.jpg',
+                    text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam blanditiis, veritatis minus rerum expedita voluptatum id. Quas tenetur, a laborum facere aliquid rem quia, porro, sapiente aliquam voluptatum qui voluptatem!'
+                }
+            ],
+            currentSlide: 0
+        },
 
-const title = [
-    'Svezia',
-    'Svizzera',
-    'Gran Bretagna',
-    'Germania',
-    'Paradise'
-];
+        methods: {
 
-const text = [
-    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis, magnam dolores dolorum corporis.',
-    'Lorem ipsum',
-    'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
-    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
-    'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam,',
-];
-
-// 1. Uniamo i 3 array di sopra in un array di oggetti
-const data = [];
-
-for (let i = 0; i < images.length; i++) {
-    data.push({
-        image: images[i],
-        title: title[i],
-        text : text[i]
-    });
-}
-
-console.log(data);
-
-const itemsContainer  = document.querySelector('.items');
-const thumbsContainer = document.getElementsByClassName('thumbs')[0]; // document.querySelector('.thumbs')
-let currentSlide      = 0; // ci posizioniamo sulla prima slide
-
-createItems();
-createThumbnails();
-
-// Slide precedente
-document.querySelector('.prev').addEventListener('click', function() {
-
-    // se sono alla prima, mi posiziono sull'ultima
-    if (currentSlide == 0) {
-        currentSlide = data.length - 1; // ultima
-    } else {
-        currentSlide--; // precedente
-    }
-
-    console.log('Prev', currentSlide);
-    changeActive(currentSlide);
-});
-
-// Slide successiva
-document.querySelector('.next').addEventListener('click', function() {
-
-    // se sono all'ultima, mi posiziono sulla prima
-    if (currentSlide == data.length - 1) {
-        currentSlide = 0; // prima
-    } else {
-        currentSlide++; // successiva
-    }
-
-    console.log('Next', currentSlide);
-    changeActive(currentSlide);
-});
-
-function changeActive(index) {
-
-    // togliamo la classe active dall'item
-    document.querySelector('.item.active').classList.remove('active');
-    document.querySelector('.thumb.active').classList.remove('active');
-
-    // aggiungiamo la classe active all'item corrente
-    document.querySelectorAll('.item')[index].classList.add('active');
-    document.querySelectorAll('.thumb')[index].classList.add('active');
-}
-
-// creiamo le slides
-function createItems() {
-    for (let i = 0; i < data.length; i++) {
-        let elem = data[i];
-
-        // aggiungiamo la classe active alla prima slide (currentSlide = 0)
-        let firstActive = '';
-        if (i == currentSlide) {
-            firstActive = 'active';
-        }
-
-        itemsContainer.innerHTML +=
-        `<div class="item ${firstActive}">
-            <img src="${elem.image}" alt="${elem.title}">
-            <div class="text">
-                <h3>${elem.title}</h3>
-                <p>${elem.text}</p>
-            </div>
-        </div>`;
-    }
-}
-
-// creiamo le thumbnails
-function createThumbnails() {
-
-    for (let i = 0; i < data.length; i++) {
-        let elem = data[i];
-
-        // aggiungiamo la classe active alla prima thumbnail (currentSlide = 0)
-        let firstActive = '';
-        if (i == currentSlide) {
-            firstActive = 'active';
-        }
-
-        thumbsContainer.innerHTML +=
-            `<div class="thumb ${firstActive}">
-                <img src="${elem.image}" alt="${elem.title}">
-            </div>`;
-    }
-}
-
+        };
